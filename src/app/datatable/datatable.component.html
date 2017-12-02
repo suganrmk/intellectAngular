@@ -1,0 +1,82 @@
+<div class="container">
+
+<h3>Dynamic Columns</h3>
+
+
+<p-dataTable [value]="cars" selectionMode="single" [globalFilter]="gb" #dt [(selection)]="selectedCar" 
+[paginator]="true" [rows]="10" [responsive]="true">
+    <p-header>
+    <div class="row">
+        <label class="col-md-7 text-left">Sample DataTable</label>
+        <div class="col-md-5">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="45" placeholder="Global Filter">
+        <button type="button" pButton icon="fa-file-o" iconPos="left" label="Print" (click)="dt.exportCSV()"></button>
+        </div>
+    </div>
+    </p-header>
+
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+    
+    <p-column header="Action"  styleClass="col-button">
+        <ng-template let-car="rowData"  let-ri="rowIndex"  pTemplate="body">
+        <button type="button" pButton (click)="onRowSelect(car , ri)" icon="fa-edit"></button>
+        </ng-template>
+    </p-column>
+   
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+        <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button>
+        </div>
+    </p-footer>
+</p-dataTable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Modal Popup -->
+
+
+
+<p-dialog header="Sample Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div ng-style="width:600px" class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="employeeId">ID</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="employeeId" size="10" [(ngModel)]="car.employeeId" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="firstName">FirstName</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="firstName"  size="10" [(ngModel)]="car.firstName" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="lastName">LastName</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="lastName"  size="10"  [(ngModel)]="car.lastName" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="email">Email</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="email"  size="10"  [(ngModel)]="car.email" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+</div>
+
+<!--Modal Popup End -->

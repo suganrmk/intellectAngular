@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngFor="let user of userData" class="col-md-3">
+        <div class="usercard">
+            <figure class="userimg">
+                <img src="http://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/512/user-2-icon.png">
+            </figure>
+            <h3 class="username">{{user.name}}</h3>
+            <span class="companyname">{{user.company.name}}</span>
+            <span class="address">{{user.address.street}} , {{user.address.suite}} , {{user.address.city}} , {{user.address.zipcode}} </span>
+            <div class="bottomdiv">
+                <button [routerLinkActive]="['active']" [routerLink]="['/usertodo' , user.id]" class="btn btn-primary">View Todos</button>
+                <div class="contactinfo">
+                    <span>{{user.phone}}</span>
+                    <span>{{user.website}}</span>
+                    <span>{{user.email}}</span> </div>
+            </div>
+        </div>
+    </div>
+</div>

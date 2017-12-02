@@ -1,0 +1,17 @@
+<div class="todopage">
+    <div class="todoHolder">
+        <h2 class="todohead">Todos</h2>
+        <ul class="todolist">
+            <li *ngFor="let todo of tododata">
+                <p>
+                    <clr-checkbox [clrChecked]="todo.completed"> </clr-checkbox><span> {{todo.title}}</span></p>
+            </li>
+        </ul>
+        <div class="newtodo">
+            <form>
+                <input type="text" id="requiredInput">
+                <button class="btn btn-primary">Add Todo</button>
+            </form>
+        </div>
+    </div>
+</div>
